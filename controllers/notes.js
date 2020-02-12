@@ -1,19 +1,21 @@
 
-var Note = require("../models/Note");
-var makeDate = require("../scripts/date");
+var Note = require("../models/note");
+var makeDate = require("../public/scripts/date");
 
 module.exports = {
-    get: function (date, cb) {
+    get: function (data, cb) {
         Note.find({
-            _headlineId: DataCue._id
+            _headlineId: data._id
         }, cb);
     },
     save: function (data, cb) {
+        consoles.log("asdfasdfasdfd", data);
         var newNote = {
             _headlineId: data._id,
             date: makeDate(),
             noteText: data.noteText
         };
+        console.log("AAAAAAAAA", newNote);
 
         Note.create(newNote, function (err, doc) {
             if (err) {

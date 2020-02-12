@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    console.log("page loaded!!");
 
     var articleContainer = $(".article-container");
     $(document).on("click", ".btn.save", handleArticleSave);
@@ -10,46 +10,50 @@ $(document).ready(function () {
     function initPage() {
 
         articleContainer.empty();
-        $.get("/api/headlines?saved=false")
+
+        $.get("/api/headlines?saved:false")
             .then(function (data) {
-                if (data && data.lenght) {
+
+                // console.log(data);
+                if (data && data.length) {
                     renderArticles(data);
                 }
                 else {
+
                     renderEmpty();
                 }
             });
     }
 
-    function renderArticles(articles) {
+    function renderArticles(data) {
 
         var articlePanels = [];
 
-        for (var i = 0; i < articles.lenght; i++) {
-            articlesPanels.push(createPanel(articles[i]));
+        for (var i = 0; i < data.length; i++) {
+            articlePanels.push(createPanel(data[i]));
         }
         articleContainer.append(articlePanels);
     }
 
-    function createPanel(article) {
-
+    function createPanel(data) {
+        console.log("create panel", data);
         var panel =
             $(["<div class='panel panel-default'>",
                 "<div class='panel-heading'>",
                 "<h3>",
-                article.healine,
+                data.headline,
                 "<a class='btn btn-success save'>",
                 "Save Article",
                 "</a>",
                 "</h3>",
                 "</div>",
                 "<div class='panel-body'>",
-                article.summary,
+                data.summary,
                 "</div>",
                 "</div>"
             ].join(""));
 
-        panel.data("_id", article._id);
+        panel.data("_id", data._id);
 
         return panel;
     }
@@ -78,6 +82,8 @@ $(document).ready(function () {
         var articleToSave = $(this).parents(".panel").data();
         articleToSave.saved = true;
 
+        console.log("this is the articel to save", articleToSave);
+
         $.ajax({
             method: "PATCH",
             url: "/api/headlines",
@@ -94,7 +100,7 @@ $(document).ready(function () {
         $.get("/api/fetch")
             .then(function (data) {
                 initPage();
-                bootbox.alert("<h3 class='text-center m-top-80>" + data.message + "<h3>");
+                alert("<h3 class='text-center m-top-80>" + data.message + "<h3>");
             });
     }
 

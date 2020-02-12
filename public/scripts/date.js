@@ -1,7 +1,7 @@
 
 var makeDate = function () {
     var d = new Date();
-    var fomattedDate = "";
+    var formattedDate = "";
 
     formattedDate += (d.getMonth() + 1) + "_";
 

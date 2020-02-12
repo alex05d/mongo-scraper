@@ -1,12 +1,12 @@
 
-var scrape = require("../scripts/scrape");
+var scrape = require("../public/scripts/scrape");
 
 var headlinesController = require("../controllers/headlines");
 var notesController = require("../controllers/notes");
 
 module.exports = function (router) {
 
-    router.get("/", function (router) {
+    router.get("/", function (req, res) {
         res.render("home");
     });
 
@@ -16,7 +16,7 @@ module.exports = function (router) {
 
     router.get("/api/fetch", function (req, res) {
         headlinesController.fetch(function (err, docs) {
-            if (!doc || docs.insertedCount === 0) {
+            if (!docs || docs.insertedCount === 0) {
                 res.json({
                     message: "No new articles today. Check back tomorrow!"
                 });
@@ -49,15 +49,15 @@ module.exports = function (router) {
     });
 
     router.patch("/api/headlines", function (req, res) {
-        headlinesController.update(req, body, function (err, data) {
+        headlinesController.update(req, function (err, data) {
             res.json(data);
         });
     });
 
-    router.get("/api/notes/:headline_id?", function (req, res) {
+    router.get("/api/notes/:headline_id", function (req, res) {
         var query = {};
-        if (req.params.healine_id) {
-            query._id = req.params.healine_id;
+        if (req.params.headline_id) {
+            query._id = req.params.headline_id;
         }
 
         notesController.get(query, function (err, data) {

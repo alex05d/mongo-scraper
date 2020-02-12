@@ -3,7 +3,7 @@ var expressHandlebars = require("express-handlebars");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
-var PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 5000;
 
 var app = express();
 
@@ -13,22 +13,22 @@ require("./config/routes")(router);
 
 app.use(express.static(__dirname + "/public"));
 
-app.use(router);
-var exphbs = require("express-handlebars");
+// var exphbs = require("express-handlebars");
 
 
 // app.use(logger("dev"));
 
 
-app.use(express.json());
+// app.use(express.json());
 
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", expressHandlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // var routes = require("./controllers/mongo-scraper");
 
+app.use(router);
 
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
