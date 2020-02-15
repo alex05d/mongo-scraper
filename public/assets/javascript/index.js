@@ -42,7 +42,7 @@ $(document).ready(function () {
                 "<div class='panel-heading'>",
                 "<h3>",
                 data.headline,
-                "<a class='btn btn-success save'>",
+                "<a class='btn btn-success save' href='/saved'>",
                 "Save Article",
                 "</a>",
                 "</h3>",
@@ -100,7 +100,7 @@ $(document).ready(function () {
         $.get("/api/fetch")
             .then(function (data) {
                 initPage();
-                alert("<h3 class='text-center m-top-80>" + data.message + "<h3>");
+                alert(data.message);
             });
     }
 
