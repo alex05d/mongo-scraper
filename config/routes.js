@@ -1,8 +1,8 @@
 
 var scrape = require("../public/scripts/scrape");
 
-var headlinesController = require("../controllers/headlines");
-var notesController = require("../controllers/notes");
+var headlinesController = require("../controllers/headlines.js");
+var notesController = require("../controllers/notes.js");
 
 module.exports = function (router) {
 
@@ -53,8 +53,7 @@ module.exports = function (router) {
             res.json(data);
         });
     });
-
-    router.get("/api/notes/:headline_id", function (req, res) {
+    router.get("/api/notes/:headline_id?", function (req, res) {
         var query = {};
         if (req.params.headline_id) {
             query._id = req.params.headline_id;
@@ -73,7 +72,7 @@ module.exports = function (router) {
         });
     });
 
-    router.post("/api/notes/:id", function (req, res) {
+    router.post("/api/notes", function (req, res) {
         notesController.save(req.body, function (data) {
             res.json(data);
         });

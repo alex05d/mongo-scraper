@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    console.log("page loaded!!");
-
     var articleContainer = $(".article-container");
     $(document).on("click", ".btn.save", handleArticleSave);
     $(document).on("click", ".scrape-new", handleArticleScrape);
@@ -14,7 +12,6 @@ $(document).ready(function () {
         $.get("/api/headlines?saved:false")
             .then(function (data) {
 
-                // console.log(data);
                 if (data && data.length) {
                     renderArticles(data);
                 }
@@ -36,9 +33,8 @@ $(document).ready(function () {
     }
 
     function createPanel(data) {
-        console.log("create panel", data);
         var panel =
-            $(["<div class='panel panel-default'>",
+            $(["<div class='panel panel-default box effect1 panel-card'>",
                 "<div class='panel-heading'>",
                 "<h3>",
                 data.headline,
@@ -82,7 +78,6 @@ $(document).ready(function () {
         var articleToSave = $(this).parents(".panel").data();
         articleToSave.saved = true;
 
-        console.log("this is the articel to save", articleToSave);
 
         $.ajax({
             method: "PATCH",

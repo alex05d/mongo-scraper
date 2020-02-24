@@ -1,0 +1,46 @@
+body{
+    background-color: rgb(0, 183, 255);
+}
+.panel-card{
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 15px;
+}
+.box {
+  text-align:center;
+    position:relative;
+    top:80px;
+}
+.box {
+    width:70%;
+    height:200px;
+    background:#FFF;
+    margin:40px auto;
+}
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+}
+.save{
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+}
+.jumbotron{
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom: 0px;
+}
+.navbar{
+    background-color: #585757;
+    margin-bottom: 20px;
+}
+.modal-body{
+    height: 400px;
+}
+.btn-danger{
+    margin-left: 20px;
+}

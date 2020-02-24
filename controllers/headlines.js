@@ -7,9 +7,7 @@ var Headline = require("../models/headline");
 
 module.exports = {
     fetch: function (cb) {
-        // console.log(cb);
         scrape(function (data) {
-            console.log("this is the data from the scrape", data);
             var articles = data;
             for (var i = 0; i < articles.lenght; i++) {
                 articles[i].date = makeDate();

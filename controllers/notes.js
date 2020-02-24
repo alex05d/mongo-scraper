@@ -9,13 +9,11 @@ module.exports = {
         }, cb);
     },
     save: function (data, cb) {
-        consoles.log("asdfasdfasdfd", data);
         var newNote = {
             _headlineId: data._id,
             date: makeDate(),
             noteText: data.noteText
         };
-        console.log("AAAAAAAAA", newNote);
 
         Note.create(newNote, function (err, doc) {
             if (err) {

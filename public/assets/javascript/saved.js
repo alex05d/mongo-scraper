@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
 
-    console.log("saved js file loaded");
 
     var articleContainer = $(".article-container");
 
@@ -47,7 +46,7 @@ $(document).ready(function () {
     function creatPanel(article) {
 
         var panel =
-            $(["<div class='panel panel-default'>",
+            $(["<div class='panel panel-default box effect1 panel-card'>",
                 "<div class='panel-heading'>",
                 "<h3>",
                 article.heading,
@@ -137,12 +136,13 @@ $(document).ready(function () {
         var noteData;
         var newNote = $(".bootbox textarea").val().trim();
 
+
         if (newNote) {
             noteData = {
                 _id: $(this).data("article")._id,
                 noteText: newNote
-            };
-            $.post("/api/notes", noteData).then(function () {
+            }
+            $.post("/api/notes/", noteData).then(function () {
                 bootbox.hideAll();
             });
         }
@@ -169,7 +169,6 @@ $(document).ready(function () {
 
         var currentArticle = $(this).parents(".panel").data();
 
-        console.log("click works!!!!", currentArticle);
         $.get("/api/notes/" + currentArticle._id).then(function (data) {
 
             var modalText = [
@@ -180,9 +179,9 @@ $(document).ready(function () {
                 "<hr />",
                 "<ul class='list-group note-container'>",
                 "</ul>",
-                "<textarea placeholder='New Note' rows='4' cols='60></textarea>",
-                "</div>",
-                "<button class='btn btn-success save'>Save Note</button>"
+                "<textarea placeholder='New Note' rows='4' cols='60'></textarea>",
+                "<button class='btn btn-success save'>Save Note</button>",
+                "</div>"
             ].join("");
 
             bootbox.dialog({
