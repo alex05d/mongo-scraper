@@ -23,15 +23,17 @@ app.use(router);
 
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect(db, function (error) {
+mongoose.connect(MONGODB_URI);
 
-    if (error) {
-        console.log(error);
-    }
-    else {
-        console.log("mongoose connection is successful");
-    }
-});
+// mongoose.connect(db, function (error) {
+
+//     if (error) {
+//         console.log(error);
+//     }
+//     else {
+//         console.log("mongoose connection is successful");
+//     }
+// });
 
 
 app.listen(PORT, function () {
