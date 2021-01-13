@@ -13,7 +13,7 @@ require("./config/routes")(router);
 
 app.use(express.static(__dirname + "/public"));
 
-mongoose.set('useNewUrlParser', true);
+// mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
 
@@ -25,9 +25,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(router);
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect(MONGODB_URI);
+// mongoose.connect(MONGODB_URI);
+
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines", { useNewUrlParser: true })
+    .then(connect => console.log('connected to mongodb..'))
+    .catch(e => console.log('could not connect to mongodb', e))
 
 // mongoose.connect(db, function (error) {
 
