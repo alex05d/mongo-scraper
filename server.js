@@ -13,6 +13,10 @@ require("./config/routes")(router);
 
 app.use(express.static(__dirname + "/public"));
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
+
 
 app.engine("handlebars", expressHandlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
